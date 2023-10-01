@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".view.DetailActivity">
+    tools:context=".SecondActivity">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -19,52 +19,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/ivBase"
-                android:layout_width="match_parent"
-                android:layout_height="700dp"
-                android:background="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.496" />
-
             <TextView
-                android:id="@+id/tv_Id"
+                android:id="@+id/pokemonId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="140dp"
-                android:text="@string/id_pokemon"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="192dp"
+                android:text="test"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_Nama" />
+                app:layout_constraintTop_toTopOf="@id/pokemonName" />
 
             <TextView
-                android:id="@+id/tv_Nama"
+                android:id="@+id/pokemonName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="132dp"
-                android:text="@string/nama_pokemon"
+                android:layout_marginTop="84dp"
+                android:text="babab"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/iv_Avatar"
+                android:id="@+id/pokemonImg"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="64dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.495"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_Nama" />
+                app:layout_constraintTop_toBottomOf="@id/pokemonName" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAbilities"
@@ -75,7 +63,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.843"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_Avatar" />
+                app:layout_constraintTop_toBottomOf="@id/pokemonImg" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvType"
@@ -86,7 +74,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.118"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_Avatar" />
+                app:layout_constraintTop_toBottomOf="@id/pokemonImg" />
 
 
 
@@ -95,11 +83,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="317dp"
-                android:text="@string/stats"
+                android:text="Stats"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_Avatar" />
+                app:layout_constraintTop_toBottomOf="@+id/pokemonImg" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvbaseStat"

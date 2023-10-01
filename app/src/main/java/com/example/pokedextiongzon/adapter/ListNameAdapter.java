@@ -20,10 +20,11 @@ import java.util.ArrayList;
 public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.ViewHolder> {
     Context context;
     ArrayList<PokemonList> pokemonListName;
-    public ListNameAdapter(Context context, ArrayList<PokemonList> arrayList) {
+    private RecyclerViewClickListener listener;
+    public ListNameAdapter(Context context, ArrayList<PokemonList> arrayList, RecyclerViewClickListener listener) {
         this.context = context;
         this.pokemonListName = arrayList;
-
+        this.listener = listener;
     }
 
     @NonNull
@@ -42,15 +43,26 @@ public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.ViewHo
     public int getItemCount() {
         return pokemonListName.size();
     }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public interface RecyclerViewClickListener{
+        void onClick(View v, int position);
+    }
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView url, name;
+
         //private ImageView image;
+        private TextView nameText;
+
+        @Override
+        public void onClick(View view){
+            listener.onClick(view, getBindingAdapterPosition());
+
+        }
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //url = itemView.findViewById(R.id.pokemonUrl);
 
             name = itemView.findViewById(R.id.pokemonName);
+            itemView.setOnClickListener(this);
             //image = itemView.findViewById(R.id.pokemonImage);
         }
         public void bind(PokemonList pokemonList){
