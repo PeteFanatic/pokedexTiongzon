@@ -1,7 +1,7 @@
 package com.example.pokedextiongzon.model;
 
 public class PokemonListId {
-    int id;
+    private static int id;
 
-    public int getId() { return id; }
+    public static int getId() { return id; }
 }

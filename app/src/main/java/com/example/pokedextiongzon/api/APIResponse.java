@@ -15,7 +15,7 @@ public class APIResponse {
     private ArrayList<PokemonType> types;
     private ArrayList<PokemonAbilities> abilities;
     private ArrayList<PokemonSprites> sprites;
-    private ArrayList<PokemonListId> id;
+    //private ArrayList<PokemonListId> id;
 
 
     public ArrayList<PokemonList> getPokemonResults() { return results; }
@@ -23,5 +23,5 @@ public class APIResponse {
     public ArrayList<PokemonType> getTypes() { return types; }
     public ArrayList<PokemonAbilities> getAbilities() { return abilities; }
     public ArrayList<PokemonSprites> getSprites() { return sprites; }
-    public ArrayList<PokemonListId> getId() { return id; }
+    //public ArrayList<PokemonListId> getId() { return id; }
 }

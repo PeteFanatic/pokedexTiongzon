@@ -37,13 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pokemonListArrayList = new ArrayList<>();
-        pokemonSpritesArrayList = new ArrayList<>();
         setOnClickListener();
-        rv_pokemonList = findViewById(R.id.pokemon_list);
-        rv_pokemonList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        listNameAdapter = new ListNameAdapter(MainActivity.this, pokemonListArrayList,listener);
-        rv_pokemonList.setAdapter(listNameAdapter);
 
         pokemonServices();
 
@@ -60,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
         };
     }
     public void pokemonServices() {
+        pokemonListArrayList = new ArrayList<>();
+        pokemonSpritesArrayList = new ArrayList<>();
+        rv_pokemonList = findViewById(R.id.pokemon_list);
+        rv_pokemonList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        listNameAdapter = new ListNameAdapter(MainActivity.this, pokemonListArrayList,listener);
+        rv_pokemonList.setAdapter(listNameAdapter);
 
         retrofit_pokemonList().create(APIInterface.class).fetchPokemonList(limit,offset)
                 .enqueue(new Callback<APIResponse>() {
