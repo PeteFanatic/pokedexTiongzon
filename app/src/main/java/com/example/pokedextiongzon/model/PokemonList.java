@@ -9,8 +9,6 @@ public class PokemonList {
     public String getUrl() { return url; }
 
     public String getName() { return name; }
-
-
 }
 
 

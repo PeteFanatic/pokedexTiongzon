@@ -1,10 +1,14 @@
 package com.example.pokedextiongzon.adapter;
 
+//import static com.example.pokedextiongzon.MainActivity.data_url_end;
+//import static com.example.pokedextiongzon.MainActivity.data_url_start;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 //import android.widget.ImageView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 //import com.bumptech.glide.Glide;
 
+import com.bumptech.glide.Glide;
 import com.example.pokedextiongzon.model.PokemonList;
 import com.example.pokedextiongzon.R;
 
@@ -21,6 +26,8 @@ public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.ViewHo
     Context context;
     ArrayList<PokemonList> pokemonListName;
     private RecyclerViewClickListener listener;
+    final static String img_url_start = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
+    final static String img_url_end = ".png";
     public ListNameAdapter(Context context, ArrayList<PokemonList> arrayList, RecyclerViewClickListener listener) {
         this.context = context;
         this.pokemonListName = arrayList;
@@ -36,6 +43,7 @@ public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ListNameAdapter.ViewHolder holder, int position) {
+
         holder.bind(pokemonListName.get(position));
     }
 
@@ -48,8 +56,9 @@ public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.ViewHo
     }
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView url, name;
-
-        //private ImageView image;
+        int num2;
+        String url2;
+        private ImageView image;
         private TextView nameText;
 
         @Override
@@ -59,16 +68,27 @@ public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.ViewHo
         }
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            //url = itemView.findViewById(R.id.pokemonUrl);
+            url = itemView.findViewById(R.id.pokemonUrl);
 
             name = itemView.findViewById(R.id.pokemonName);
             itemView.setOnClickListener(this);
-            //image = itemView.findViewById(R.id.pokemonImage);
+            image = itemView.findViewById(R.id.pokemonImage);
         }
         public void bind(PokemonList pokemonList){
-            //url.setText(pokemonList.getUrl()+"");
+            url2 = pokemonList.getUrl();
+            num2 = getId(url2);
+            String pokeImage = img_url_start + num2 + img_url_end;
+            String num = String.format("%03d",num2);
+            url.setText(num+"");
             name.setText(pokemonList.getName());
-            //Glide.with(context).load(pokemonList.getImage()).into(image);
+
+            Glide.with(context).load(pokeImage).into(image);
+        }
+        public int getId(String url2){
+            String[] parts= url2.split("/");
+            String num = parts[parts.length - 1];
+            int num2 = Integer.parseInt(num);
+            return num2;
         }
     }
 }

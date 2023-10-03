@@ -11,11 +11,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.example.pokedextiongzon.adapter.ListNameAdapter;
 import com.example.pokedextiongzon.api.APIInterface;
 import com.example.pokedextiongzon.api.APIResponse;
 import com.example.pokedextiongzon.model.PokemonList;
+import com.example.pokedextiongzon.model.PokemonListId;
 import com.example.pokedextiongzon.model.PokemonSprites;
 
 import java.util.ArrayList;
@@ -38,9 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setOnClickListener();
-
         pokemonServices();
-
     }
 
     private void setOnClickListener(){
@@ -55,11 +56,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void pokemonServices() {
         pokemonListArrayList = new ArrayList<>();
-        pokemonSpritesArrayList = new ArrayList<>();
-        rv_pokemonList = findViewById(R.id.pokemon_list);
-        rv_pokemonList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        listNameAdapter = new ListNameAdapter(MainActivity.this, pokemonListArrayList,listener);
-        rv_pokemonList.setAdapter(listNameAdapter);
+        TextView idView = findViewById(R.id.pokemonId);
+        mainRecyclerView();
 
         retrofit_pokemonList().create(APIInterface.class).fetchPokemonList(limit,offset)
                 .enqueue(new Callback<APIResponse>() {
@@ -68,10 +66,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<APIResponse> call, Response<APIResponse> response) {
                 if(response.code() == 200){
-                    System.out.println("----------------------------");
                     if(response.body()!=null){
-
-
                         pokemonListArrayList.addAll(response.body().getPokemonResults());
                         listNameAdapter.notifyDataSetChanged();
                     }
@@ -83,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
                 call.cancel();
             }
         });
+    }
+    public void mainRecyclerView(){
+        rv_pokemonList = findViewById(R.id.pokemon_list);
+        rv_pokemonList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        listNameAdapter = new ListNameAdapter(MainActivity.this, pokemonListArrayList,listener);
+        rv_pokemonList.setAdapter(listNameAdapter);
     }
 }
 

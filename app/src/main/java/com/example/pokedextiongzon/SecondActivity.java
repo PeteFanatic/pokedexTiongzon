@@ -1,6 +1,8 @@
 package com.example.pokedextiongzon;
 
 //import static com.example.pokedextiongzon.api.APIClient.retrofit;
+import static android.content.ContentValues.TAG;
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 import static com.example.pokedextiongzon.api.APIClient.retrofit_pokemonList;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,7 +58,9 @@ public class SecondActivity extends AppCompatActivity {
                     idText.setText("Code" + response.code());
                     return;
                 }
+
                 int resource = response.body().getId();
+                System.out.println(resource+"---------------");
                 //int id = PokemonListId.getId();
 
                     //String content = "";
