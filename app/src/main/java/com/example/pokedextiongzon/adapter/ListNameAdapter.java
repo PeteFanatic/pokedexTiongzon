@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 //import com.bumptech.glide.Glide;
 
 import com.bumptech.glide.Glide;
+import com.example.pokedextiongzon.MainPokemonFragment;
 import com.example.pokedextiongzon.model.PokemonList;
 import com.example.pokedextiongzon.R;
 

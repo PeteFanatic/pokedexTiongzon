@@ -10,56 +10,51 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pokedextiongzon.R;
-import com.example.pokedextiongzon.model.PokemonStats;
+import com.example.pokedextiongzon.model.PokemonAbilities;
 
 import java.util.ArrayList;
 
-public class ListStatAdapter extends RecyclerView.Adapter<ListStatAdapter.ViewHolder> {
+public class ListAbilityAdapter extends RecyclerView.Adapter<ListAbilityAdapter.ViewHolder> {
     Context context;
-    ArrayList<PokemonStats> pokemonStats;
-    public ListStatAdapter(Context context, ArrayList<PokemonStats> arrayList) {
+    ArrayList<PokemonAbilities> pokemonAbilities;
+    public ListAbilityAdapter(Context context, ArrayList<PokemonAbilities> arrayList) {
         this.context = context;
-        this.pokemonStats = arrayList;
+        this.pokemonAbilities = arrayList;
 
     }
 
-
-
     @NonNull
     @Override
-    public ListStatAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ListAbilityAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.type_list_item,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListStatAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ListAbilityAdapter.ViewHolder holder, int position) {
         //PokemonTypes types = type.get(position);
-        holder.statNameText.setText(pokemonStats.get(position).getStat().getName());
-        holder.baseStatText.setText(String.valueOf(pokemonStats.get(position).getBase_stat()));
+        holder.abilityText.setText(pokemonAbilities.get(position).getAbility().getName());
         //holder.bind(pokemonType.get(position).getType());
     }
 
     @Override
     public int getItemCount() {
-        return pokemonStats.size();
+        return pokemonAbilities.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView url, statNameText, baseStatText;
+        private TextView url, abilityText, baseStatText;
         //private ImageView image;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //url = itemView.findViewById(R.id.pokemonUrl);
 
-            statNameText = itemView.findViewById(R.id.pokemonStat_NameView);
-            baseStatText = itemView.findViewById(R.id.pokemonBase_StatView);
+            abilityText = itemView.findViewById(R.id.pokemonAbilitiesView);
             //image = itemView.findViewById(R.id.pokemonImage);
         }
-        public void bind(PokemonStats pokemonStats){
+        public void bind(PokemonAbilities pokemonAbilities){
             //url.setText(PokemonType.getUrl()+"");
-            statNameText.setText(pokemonStats.getStat().getName());
-            baseStatText.setText("" + pokemonStats.getBase_stat());
+            abilityText.setText(pokemonAbilities.getAbility().getName());
             //Glide.with(context).load(pokemonList.getImage()).into(image);
         }
     }

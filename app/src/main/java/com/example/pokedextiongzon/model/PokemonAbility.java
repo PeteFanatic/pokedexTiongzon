@@ -1,10 +1,9 @@
 package com.example.pokedextiongzon.model;
 
-public class PokemonStat {
+public class PokemonAbility {
     String name;
 
     public String getName() {
         return name;
     }
-
 }

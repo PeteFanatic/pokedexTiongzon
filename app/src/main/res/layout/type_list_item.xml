@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/pokemonTypeView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textAllCaps="true"
+        android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/pokemonStat_NameView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:textAllCaps="true"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/pokemonBase_StatView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="300dp"
+        android:textAllCaps="true"
+        android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/pokemonAbilitiesView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="300dp"
+        android:textAllCaps="true"
+        android:textColor="@color/black" />
+
+</FrameLayout>

@@ -12,30 +12,32 @@ import androidx.recyclerview.widget.RecyclerView;
 
 //import com.bumptech.glide.Glide;
 
-import com.example.pokedextiongzon.model.PokemonType;
 import com.example.pokedextiongzon.R;
+import com.example.pokedextiongzon.model.PokemonTypes;
 
 import java.util.ArrayList;
 
 public class ListTypeAdapter extends RecyclerView.Adapter<ListTypeAdapter.ViewHolder> {
     Context context;
-    ArrayList<PokemonType> pokemonType;
-    public ListTypeAdapter(Context context, ArrayList<PokemonType> arrayList) {
+    ArrayList<PokemonTypes> pokemonType;
+    public ListTypeAdapter(Context context, ArrayList<PokemonTypes> arrayList) {
         this.context = context;
         this.pokemonType = arrayList;
 
     }
 
+
+
     @NonNull
     @Override
     public ListTypeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.pokemon_info,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.type_list_item,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ListTypeAdapter.ViewHolder holder, int position) {
-        holder.bind(pokemonType.get(position));
+        holder.typeText.setText(pokemonType.get(position).getType().getName());
     }
 
     @Override
@@ -44,19 +46,15 @@ public class ListTypeAdapter extends RecyclerView.Adapter<ListTypeAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView url, type;
+        private TextView url, typeText;
         //private ImageView image;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            //url = itemView.findViewById(R.id.pokemonUrl);
 
-            type = itemView.findViewById(R.id.pokemonName);
-            //image = itemView.findViewById(R.id.pokemonImage);
+            typeText = itemView.findViewById(R.id.pokemonTypeView);
         }
-        public void bind(PokemonType pokemonType){
-            //url.setText(PokemonType.getUrl()+"");
-            type.setText(pokemonType.getType());
-            //Glide.with(context).load(pokemonList.getImage()).into(image);
+        public void bind(PokemonTypes pokemonType){
+            typeText.setText(pokemonType.getType().getName());
         }
     }
 }

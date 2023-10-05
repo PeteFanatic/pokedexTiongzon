@@ -11,14 +11,12 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
+import android.view.WindowManager;
 
 import com.example.pokedextiongzon.adapter.ListNameAdapter;
 import com.example.pokedextiongzon.api.APIInterface;
 import com.example.pokedextiongzon.api.APIResponse;
 import com.example.pokedextiongzon.model.PokemonList;
-import com.example.pokedextiongzon.model.PokemonListId;
 import com.example.pokedextiongzon.model.PokemonSprites;
 
 import java.util.ArrayList;
@@ -40,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer, new MainPokemonFragment()).commit();
         setOnClickListener();
         pokemonServices();
     }
@@ -50,13 +50,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v, int position){
                 Intent intent = new Intent(getApplicationContext(),SecondActivity.class);
                 intent.putExtra("name",pokemonListArrayList.get(position).getName());
+                intent.putExtra("url",pokemonListArrayList.get(position).getUrl());
                 startActivity(intent);
             }
         };
     }
     public void pokemonServices() {
         pokemonListArrayList = new ArrayList<>();
-        TextView idView = findViewById(R.id.pokemonId);
         mainRecyclerView();
 
         retrofit_pokemonList().create(APIInterface.class).fetchPokemonList(limit,offset)
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     if(response.body()!=null){
                         pokemonListArrayList.addAll(response.body().getPokemonResults());
                         listNameAdapter.notifyDataSetChanged();
+
                     }
                 }
             }

@@ -15,6 +15,5 @@ public interface APIInterface {
     @GET("pokemon/{name}")
     Call<APIResponse> fetchPokemonInfo(@Path("name") String name);
 
-    @GET("pokemon/{name}")
-    Call<PokemonListId> fetchPokemonInfo2(@Path("name") String name);
+
 }
