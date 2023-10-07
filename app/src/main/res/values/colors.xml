@@ -10,7 +10,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="silver">#999999</color>
     <color name="silver_100">#738A93</color>
-    <color name="toolbar">#B0E0E6</color>
+    <color name="toolbar_color">#D54253</color>
     <!--    Customize Colors-->
     <color name="default_backgroundCardView">#F3F6F4</color>
     <color name="paper_color">#F8F8F8</color>

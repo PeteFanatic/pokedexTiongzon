@@ -1,6 +1,7 @@
 package com.example.pokedextiongzon.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 //import com.bumptech.glide.Glide;
 
 import com.example.pokedextiongzon.R;
+import com.example.pokedextiongzon.model.PokemonTypeColor;
 import com.example.pokedextiongzon.model.PokemonTypes;
 
 import java.util.ArrayList;
@@ -54,6 +56,7 @@ public class ListTypeAdapter extends RecyclerView.Adapter<ListTypeAdapter.ViewHo
             typeText = itemView.findViewById(R.id.pokemonTypeView);
         }
         public void bind(PokemonTypes pokemonType){
+            typeText.setTextColor(getTypeColor);
             typeText.setText(pokemonType.getType().getName());
         }
     }

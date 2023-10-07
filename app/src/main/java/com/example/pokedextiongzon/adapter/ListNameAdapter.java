@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 //import com.bumptech.glide.Glide;
 
 import com.bumptech.glide.Glide;
-import com.example.pokedextiongzon.MainPokemonFragment;
+import com.example.pokedextiongzon.PokemonListFragment;
 import com.example.pokedextiongzon.model.PokemonList;
 import com.example.pokedextiongzon.R;
 
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.ViewHolder> {
     Context context;
-    ArrayList<PokemonList> pokemonListName;
+    ArrayList<PokemonList> pokemonListName = new ArrayList<>();
     private RecyclerViewClickListener listener;
     final static String img_url_start = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
     final static String img_url_end = ".png";

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".SecondActivity">
+<!--    change the to the pokemon fragment later ^^^^^ -->
 
     <ScrollView
         android:id="@+id/scrollView"
