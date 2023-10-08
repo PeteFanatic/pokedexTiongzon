@@ -56,7 +56,7 @@ public class ListTypeAdapter extends RecyclerView.Adapter<ListTypeAdapter.ViewHo
             typeText = itemView.findViewById(R.id.pokemonTypeView);
         }
         public void bind(PokemonTypes pokemonType){
-            typeText.setTextColor(getTypeColor);
+//            typeText.setTextColor();
             typeText.setText(pokemonType.getType().getName());
         }
     }

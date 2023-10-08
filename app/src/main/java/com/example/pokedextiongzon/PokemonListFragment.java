@@ -33,7 +33,7 @@ public class PokemonListFragment extends Fragment{
 
     RecyclerView rv_pokemonList;
     ListNameAdapter listNameAdapter;
-    ArrayList<PokemonList> pokemonListArrayList = new ArrayList<>();
+    ArrayList<PokemonList> pokemonListArrayList;
     private ListNameAdapter.RecyclerViewClickListener listener;
     Context context = getContext();
     int limit = 100;
@@ -59,6 +59,7 @@ public class PokemonListFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        pokemonListArrayList = new ArrayList<>();
         mainRecyclerView(view);
         pokemonServices();
         setOnClickListener();
@@ -69,7 +70,6 @@ public class PokemonListFragment extends Fragment{
             public void onClick(View v, int position){
                 Intent intent = new Intent(getActivity(),PokemonDetailsFragment.class);
                 intent.putExtra("name",pokemonListArrayList.get(position).getName());
-                intent.putExtra("url",pokemonListArrayList.get(position).getUrl());
 
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frameLayout,new PokemonDetailsFragment());
@@ -79,14 +79,17 @@ public class PokemonListFragment extends Fragment{
     }
     public void pokemonServices() {
 
+        //System.out.println("------------------");
         retrofit_pokemonList().create(APIInterface.class).fetchPokemonList(limit,offset)
                 .enqueue(new Callback<APIResponse>() {
 
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onResponse(Call<APIResponse> call, Response<APIResponse> response) {
+                        System.out.println("------------------");
                         if(response.code() == 200){
                             if(response.body()!=null){
+                                System.out.println("------------------");
                                 pokemonListArrayList.addAll(response.body().getPokemonResults());
                                 listNameAdapter.notifyDataSetChanged();
 
@@ -102,10 +105,11 @@ public class PokemonListFragment extends Fragment{
     }
 
     public void mainRecyclerView(View view){
+//        System.out.println("------------------");
 
-        //LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         rv_pokemonList = view.findViewById(R.id.pokemon_list);
-        rv_pokemonList.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        rv_pokemonList.setLayoutManager(layoutManager);
         rv_pokemonList.setHasFixedSize(true);
         listNameAdapter = new ListNameAdapter(getContext(), pokemonListArrayList,listener);
         rv_pokemonList.setAdapter(listNameAdapter);
