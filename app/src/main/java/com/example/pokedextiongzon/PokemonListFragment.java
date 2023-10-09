@@ -43,7 +43,10 @@ public class PokemonListFragment extends Fragment{
     }
 
 
-
+    public static PokemonListFragment newInstance(){
+        PokemonListFragment fragment = new PokemonListFragment();
+        return fragment;
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,5 +116,14 @@ public class PokemonListFragment extends Fragment{
         rv_pokemonList.setHasFixedSize(true);
         listNameAdapter = new ListNameAdapter(getContext(), pokemonListArrayList,listener);
         rv_pokemonList.setAdapter(listNameAdapter);
+    }
+
+    public void onClick(View v, int position){
+        Fragment fragment = PokemonDetailsFragment.newInstance(pokemonListArrayList.get(position).getName());
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.hide(requireActivity().getSupportFragmentManager().findFragmentByTag("main_fragment"));
+        transaction.replace(R.id.frameLayout,fragment,"name");
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

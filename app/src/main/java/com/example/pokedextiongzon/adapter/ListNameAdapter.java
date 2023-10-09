@@ -44,8 +44,14 @@ public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ListNameAdapter.ViewHolder holder, int position) {
-
+        int pos = position;
         holder.bind(pokemonListName.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(final View v){
+                listener.onClick(v,pos);
+            }
+        });
     }
 
     @Override
@@ -55,24 +61,18 @@ public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.ViewHo
     public interface RecyclerViewClickListener{
         void onClick(View v, int position);
     }
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView url, name;
         int num2;
         String url2;
         private ImageView image;
         private TextView nameText;
-
-        @Override
-        public void onClick(View view){
-            listener.onClick(view, getBindingAdapterPosition());
-
-        }
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             url = itemView.findViewById(R.id.pokemonUrl);
 
             name = itemView.findViewById(R.id.pokemonName);
-            itemView.setOnClickListener(this);
+            //itemView.setOnClickListener(this);
             image = itemView.findViewById(R.id.pokemonImage);
         }
         public void bind(PokemonList pokemonList){
