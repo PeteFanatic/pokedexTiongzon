@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 //import com.bumptech.glide.Glide;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class ListTypeAdapter extends RecyclerView.Adapter<ListTypeAdapter.ViewHolder> {
     Context context;
     ArrayList<PokemonTypes> pokemonType;
+    private final PokemonTypeColor pokemonTypeColor = new PokemonTypeColor();
     public ListTypeAdapter(Context context, ArrayList<PokemonTypes> arrayList) {
         this.context = context;
         this.pokemonType = arrayList;
@@ -39,7 +41,11 @@ public class ListTypeAdapter extends RecyclerView.Adapter<ListTypeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ListTypeAdapter.ViewHolder holder, int position) {
-        holder.typeText.setText(pokemonType.get(position).getType().getName());
+        String selectedType = pokemonType.get(position).getType().getName();
+        holder.typeText.setText(selectedType);
+        int colorResourceId = pokemonTypeColor.getTypeColor(selectedType);
+        int typeColor = ContextCompat.getColor(context,colorResourceId);
+        holder.typeText.setBackgroundColor(typeColor);
     }
 
     @Override
@@ -57,7 +63,8 @@ public class ListTypeAdapter extends RecyclerView.Adapter<ListTypeAdapter.ViewHo
         }
         public void bind(PokemonTypes pokemonType){
 //            typeText.setTextColor();
-            typeText.setText(pokemonType.getType().getName());
+            String name = pokemonType.getType().getName();
+            typeText.setText(name);
         }
     }
 }

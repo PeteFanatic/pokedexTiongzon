@@ -14,11 +14,12 @@
         android:layout_height="wrap_content"/>
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:background="@color/toolbar_color"
+        android:background="@drawable/gradient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme">
+        android:theme="?attr/actionBarTheme"
+        app:buttonGravity="bottom">
 
     <TextView
         android:id="@+id/toolbar_text"
@@ -26,8 +27,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-black"
-        android:letterSpacing="0.3"
+        android:letterSpacing="0.4"
         android:text="POKEDEX"
+        android:textStyle="italic"
         android:textColor="@color/white"
         android:textSize="24dp" />
     </androidx.appcompat.widget.Toolbar>

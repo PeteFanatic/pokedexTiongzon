@@ -72,7 +72,6 @@ public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.ViewHo
             url = itemView.findViewById(R.id.pokemonUrl);
 
             name = itemView.findViewById(R.id.pokemonName);
-            //itemView.setOnClickListener(this);
             image = itemView.findViewById(R.id.pokemonImage);
         }
         public void bind(PokemonList pokemonList){

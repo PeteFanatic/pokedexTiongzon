@@ -9,6 +9,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="silver">#999999</color>
+    <color name="boxColor">#E3E3E3</color>
     <color name="silver_100">#738A93</color>
     <color name="toolbar_color">#D54253</color>
     <!--    Customize Colors-->

@@ -14,6 +14,16 @@ public class APIResponse {
     public ArrayList<PokemonTypes> types;
     public ArrayList<PokemonStats> stats;
     public ArrayList<PokemonAbilities> abilities;
+    public int id;
+    public PokemonSprites sprites;
+
+    public PokemonSprites getSprites() {
+        return sprites;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public ArrayList<PokemonAbilities> getAbilities() {
         return abilities;

@@ -7,21 +7,13 @@
     tools:context=".SecondActivity">
 <!--    change the to the pokemon fragment later ^^^^^ -->
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/pokemonId"
+                android:id="@+id/pokemonDetail_Id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="204dp"
@@ -36,7 +28,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="84dp"
-                android:text="babab"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -45,33 +36,37 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/pokemonImg"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="64dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pokemonName" />
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:elevation="10dp"
+                tools:layout_editor_absoluteX="6dp"
+                tools:layout_editor_absoluteY="124dp">
+
+                <ImageView
+                    android:id="@+id/pokemonImg"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="64dp" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAbilities"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.822"
+                app:layout_constraintHorizontal_bias="0.797"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/pokemonImg" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvType"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.226"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/pokemonImg" />
 
@@ -89,12 +84,12 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvStat"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.272"
+                app:layout_constraintHorizontal_bias="0.226"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_basestats" />
 
@@ -102,14 +97,13 @@
                 android:id="@+id/rvStat_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.733"
+                app:layout_constraintHorizontal_bias="0.69"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_basestats" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
     <ProgressBar
         android:id="@+id/progressBar2"

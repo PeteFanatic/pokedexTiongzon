@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.pokedextiongzon.adapter.ListNameAdapter;
 import com.example.pokedextiongzon.api.APIInterface;
@@ -24,62 +25,68 @@ import com.example.pokedextiongzon.api.APIResponse;
 import com.example.pokedextiongzon.model.PokemonList;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PokemonListFragment extends Fragment{
-
+public class PokemonListFragment extends Fragment implements ListNameAdapter.RecyclerViewClickListener{
     RecyclerView rv_pokemonList;
     ListNameAdapter listNameAdapter;
     ArrayList<PokemonList> pokemonListArrayList;
-    private ListNameAdapter.RecyclerViewClickListener listener;
+//    private ListNameAdapter.RecyclerViewClickListener listener;
     Context context = getContext();
     int limit = 100;
     int offset = 0;
-
+    private ProgressBar progressBar;
     public PokemonListFragment() {
-    }
-
-
-    public static PokemonListFragment newInstance(){
-        PokemonListFragment fragment = new PokemonListFragment();
-        return fragment;
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_pokemon, container, false);
-        rv_pokemonList=view.findViewById(R.id.pokemon_list);
+        progressBar = view.findViewById(R.id.progressBar);
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        pokemonListArrayList = new ArrayList<>();
+        service.execute(new Runnable(){
+            @Override
+            public void run(){
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressBar.setVisibility(View.VISIBLE);
+                    }
+                });
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressBar.setVisibility(View.GONE);
+                        if(pokemonListArrayList!=null){
+                            rv_pokemonList = view.findViewById(R.id.pokemon_list);
+                            mainRecyclerView(view);
+                            pokemonServices();
+                        }
+                    }
+                });
+            }
+        });
         return view;
     }
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        pokemonListArrayList = new ArrayList<>();
-        mainRecyclerView(view);
-        pokemonServices();
-        setOnClickListener();
-    }
-    private void setOnClickListener(){
-        listener = new ListNameAdapter.RecyclerViewClickListener(){
-            @Override
-            public void onClick(View v, int position){
-                Intent intent = new Intent(getActivity(),PokemonDetailsFragment.class);
-                intent.putExtra("name",pokemonListArrayList.get(position).getName());
 
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frameLayout,new PokemonDetailsFragment());
-                startActivity(intent);
-            }
-        };
-    }
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//        pokemonListArrayList = new ArrayList<>();
+//        mainRecyclerView(view);
+//        pokemonServices();
+//        setOnClickListener();
+//    }
     public void pokemonServices() {
 
         //System.out.println("------------------");
@@ -106,6 +113,19 @@ public class PokemonListFragment extends Fragment{
                     }
                 });
     }
+//    private void setOnClickListener(){
+//        listener = new ListNameAdapter.RecyclerViewClickListener(){
+//            @Override
+//            public void onClick(View v, int position){
+//                Intent intent = new Intent(getActivity(),PokemonDetailsFragment.class);
+//                intent.putExtra("name",pokemonListArrayList.get(position).getName());
+//
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.frameLayout,new PokemonDetailsFragment());
+//                startActivity(intent);
+//            }
+//        };
+//    }
 
     public void mainRecyclerView(View view){
 //        System.out.println("------------------");
@@ -114,7 +134,7 @@ public class PokemonListFragment extends Fragment{
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         rv_pokemonList.setLayoutManager(layoutManager);
         rv_pokemonList.setHasFixedSize(true);
-        listNameAdapter = new ListNameAdapter(getContext(), pokemonListArrayList,listener);
+        listNameAdapter = new ListNameAdapter(getContext(), pokemonListArrayList,this);
         rv_pokemonList.setAdapter(listNameAdapter);
     }
 

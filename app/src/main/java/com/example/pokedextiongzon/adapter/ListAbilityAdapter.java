@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ public class ListAbilityAdapter extends RecyclerView.Adapter<ListAbilityAdapter.
     public void onBindViewHolder(@NonNull ListAbilityAdapter.ViewHolder holder, int position) {
         //PokemonTypes types = type.get(position);
         holder.abilityText.setText(pokemonAbilities.get(position).getAbility().getName());
+        holder.typeButton.setVisibility(View.INVISIBLE);
         //holder.bind(pokemonType.get(position).getType());
     }
 
@@ -44,12 +46,14 @@ public class ListAbilityAdapter extends RecyclerView.Adapter<ListAbilityAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView url, abilityText, baseStatText;
+        private Button typeButton;
         //private ImageView image;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //url = itemView.findViewById(R.id.pokemonUrl);
 
             abilityText = itemView.findViewById(R.id.pokemonAbilitiesView);
+            typeButton = itemView.findViewById(R.id.pokemonTypeView);
             //image = itemView.findViewById(R.id.pokemonImage);
         }
         public void bind(PokemonAbilities pokemonAbilities){

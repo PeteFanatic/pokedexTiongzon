@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,6 +38,7 @@ public class ListStatAdapter extends RecyclerView.Adapter<ListStatAdapter.ViewHo
         //PokemonTypes types = type.get(position);
         holder.statNameText.setText(pokemonStats.get(position).getStat().getName());
         holder.baseStatText.setText(String.valueOf(pokemonStats.get(position).getBase_stat()));
+        holder.typeButton.setVisibility(View.INVISIBLE);
         //holder.bind(pokemonType.get(position).getType());
     }
 
@@ -47,6 +49,7 @@ public class ListStatAdapter extends RecyclerView.Adapter<ListStatAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView url, statNameText, baseStatText;
+        private Button typeButton;
         //private ImageView image;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -54,6 +57,7 @@ public class ListStatAdapter extends RecyclerView.Adapter<ListStatAdapter.ViewHo
 
             statNameText = itemView.findViewById(R.id.pokemonStat_NameView);
             baseStatText = itemView.findViewById(R.id.pokemonBase_StatView);
+            typeButton = itemView.findViewById(R.id.pokemonTypeView);
             //image = itemView.findViewById(R.id.pokemonImage);
         }
         public void bind(PokemonStats pokemonStats){

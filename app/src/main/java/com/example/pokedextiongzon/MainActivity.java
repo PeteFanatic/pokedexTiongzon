@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void replaceFragment(Fragment fragment){
-        Fragment fragment1 = PokemonListFragment.newInstance();
+        //Fragment fragment1 = PokemonListFragment.newInstance();
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout,fragment,"main_fragment");
