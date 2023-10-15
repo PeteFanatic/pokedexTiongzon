@@ -13,6 +13,11 @@ public class APIResponse {
     private ArrayList<PokemonList> results;
     public ArrayList<PokemonTypes> types;
     public ArrayList<PokemonStats> stats;
+
+    public void setResults(ArrayList<PokemonList> results) {
+        this.results = results;
+    }
+
     public ArrayList<PokemonAbilities> abilities;
     public int id;
     public PokemonSprites sprites;

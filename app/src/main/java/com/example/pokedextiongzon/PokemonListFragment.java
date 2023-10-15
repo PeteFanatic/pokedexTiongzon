@@ -92,18 +92,14 @@ public class PokemonListFragment extends Fragment implements ListNameAdapter.Rec
         //System.out.println("------------------");
         retrofit_pokemonList().create(APIInterface.class).fetchPokemonList(limit,offset)
                 .enqueue(new Callback<APIResponse>() {
-
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onResponse(Call<APIResponse> call, Response<APIResponse> response) {
                         System.out.println("------------------");
-                        if(response.code() == 200){
-                            if(response.body()!=null){
+                        if(response.code() == 200 && response.body()!=null){
                                 System.out.println("------------------");
                                 pokemonListArrayList.addAll(response.body().getPokemonResults());
                                 listNameAdapter.notifyDataSetChanged();
-
-                            }
                         }
                     }
 
@@ -113,19 +109,6 @@ public class PokemonListFragment extends Fragment implements ListNameAdapter.Rec
                     }
                 });
     }
-//    private void setOnClickListener(){
-//        listener = new ListNameAdapter.RecyclerViewClickListener(){
-//            @Override
-//            public void onClick(View v, int position){
-//                Intent intent = new Intent(getActivity(),PokemonDetailsFragment.class);
-//                intent.putExtra("name",pokemonListArrayList.get(position).getName());
-//
-//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                transaction.replace(R.id.frameLayout,new PokemonDetailsFragment());
-//                startActivity(intent);
-//            }
-//        };
-//    }
 
     public void mainRecyclerView(View view){
 //        System.out.println("------------------");

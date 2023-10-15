@@ -27,7 +27,6 @@ public class ListTypeAdapter extends RecyclerView.Adapter<ListTypeAdapter.ViewHo
     public ListTypeAdapter(Context context, ArrayList<PokemonTypes> arrayList) {
         this.context = context;
         this.pokemonType = arrayList;
-
     }
 
 
@@ -49,9 +48,7 @@ public class ListTypeAdapter extends RecyclerView.Adapter<ListTypeAdapter.ViewHo
     }
 
     @Override
-    public int getItemCount() {
-        return pokemonType.size();
-    }
+    public int getItemCount() {return pokemonType.size();}
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView url, typeText;
@@ -60,11 +57,6 @@ public class ListTypeAdapter extends RecyclerView.Adapter<ListTypeAdapter.ViewHo
             super(itemView);
 
             typeText = itemView.findViewById(R.id.pokemonTypeView);
-        }
-        public void bind(PokemonTypes pokemonType){
-//            typeText.setTextColor();
-            String name = pokemonType.getType().getName();
-            typeText.setText(name);
         }
     }
 }

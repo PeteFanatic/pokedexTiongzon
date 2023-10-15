@@ -107,17 +107,17 @@ public class PokemonDetailsFragment extends Fragment {
     }
     public void displayDetails(String pokeName){
         pokemonListArrayType = new ArrayList<>();
-        Retrofit retrofit = retrofit_pokemonList();
-        APIInterface apiInterface = retrofit.create(APIInterface.class);
-        Call<APIResponse> call = apiInterface.fetchPokemonInfo(pokeName);
-        call.enqueue(new Callback<APIResponse>() {
+        idText = getView().findViewById(R.id.pokemonDetail_Id);
+        imageView = getView().findViewById(R.id.pokemonImg);
+
+        retrofit_pokemonList().create(APIInterface.class).fetchPokemonInfo(pokeName)
+                .enqueue(new Callback<APIResponse>() {
             @Override
             public void onResponse(Call<APIResponse> call, Response<APIResponse> response) {
                 if(response.code() == 200 && response.body()!=null){
 
                     APIResponse apiResponse = response.body();
-                    idText = getView().findViewById(R.id.pokemonDetail_Id);
-                    imageView = getView().findViewById(R.id.pokemonImg);
+
                     String getId = String.format("#%03d",apiResponse.getId());
                     String imageUrl = apiResponse.getSprites().getFront_default();
                     idText.setText(getId+"");
@@ -125,19 +125,17 @@ public class PokemonDetailsFragment extends Fragment {
                     pokemonType_rv(apiResponse);
                     pokemonStat_rv(apiResponse);
                     abilities_rv(apiResponse);
-//                    pokemonListArrayType.addAll(response.body().getTypes());
-//                    listTypeAdapter.notifyDataSetChanged();
                 }
             }
-
             @Override
             public void onFailure(Call<APIResponse> call, Throwable t) {
-
+                call.cancel();
             }
         });
     }
     public void pokemonType_rv(APIResponse apiResponse){
         ArrayList<PokemonTypes> types = apiResponse.getTypes();
+        rv_pokemonType = getView().findViewById(R.id.rvType);
         Collections.sort(types, new Comparator<PokemonTypes>() {
             @Override
             public int compare(PokemonTypes type1, PokemonTypes type2) {
@@ -145,7 +143,7 @@ public class PokemonDetailsFragment extends Fragment {
                 return Integer.compare(type1.getSlot(), type2.getSlot());
             }
         });
-        rv_pokemonType = getView().findViewById(R.id.rvType);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         rv_pokemonType.setLayoutManager(layoutManager);
         ListTypeAdapter adapter = new ListTypeAdapter(getContext(),types);
