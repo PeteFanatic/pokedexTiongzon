@@ -6,4 +6,8 @@ public class PokemonAbilities {
     public PokemonAbility getAbility() {
         return ability;
     }
+
+    public void setAbility(PokemonAbility ability) {
+        this.ability = ability;
+    }
 }

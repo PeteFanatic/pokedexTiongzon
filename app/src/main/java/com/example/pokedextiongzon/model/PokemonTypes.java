@@ -5,6 +5,11 @@ import java.util.ArrayList;
 public class PokemonTypes {
 
     int slot;
+
+    public void setType(PokemonType type) {
+        this.type = type;
+    }
+
     PokemonType type;
 
     public PokemonType getType() {
@@ -12,6 +17,7 @@ public class PokemonTypes {
     }
 
     public int getSlot() { return slot; }
+
 
 }
 

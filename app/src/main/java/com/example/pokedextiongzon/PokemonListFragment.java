@@ -78,15 +78,6 @@ public class PokemonListFragment extends Fragment implements ListNameAdapter.Rec
         });
         return view;
     }
-
-//    @Override
-//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//        pokemonListArrayList = new ArrayList<>();
-//        mainRecyclerView(view);
-//        pokemonServices();
-//        setOnClickListener();
-//    }
     public void pokemonServices() {
 
         //System.out.println("------------------");

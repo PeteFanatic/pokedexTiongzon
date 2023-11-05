@@ -42,8 +42,36 @@ public class APIResponse {
     public ArrayList<PokemonList> getPokemonResults() {
         return results;
     }
+
     public ArrayList<PokemonStats> getStats() {
         return stats;
     }
 
+    public void setTypes(ArrayList<PokemonTypes> types) {
+        this.types = types;
+    }
+
+    public void setStats(ArrayList<PokemonStats> stats) {
+        this.stats = stats;
+    }
+
+    public void setAbilities(ArrayList<PokemonAbilities> abilities) {
+        this.abilities = abilities;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setSprites(PokemonSprites sprites) {
+        this.sprites = sprites;
+    }
+
+    public void setCount(int i) {
+    }
+
+
 }
+
+
+
